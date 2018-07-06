@@ -7,7 +7,6 @@ export default class Home extends Component {
       };
     render() {
         return (
-
                 <View style={styles.container}>
                 <Text style={styles.label}> {this.props.navigation.state.params.fullname}</Text>
 
