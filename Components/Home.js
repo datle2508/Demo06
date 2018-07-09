@@ -1,21 +1,41 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet,KeyboardAvoidingView } from 'react-native';
+import { View, Text, Image, StyleSheet,KeyboardAvoidingView,TouchableOpacity } from 'react-native';
 
 export default class Home extends Component {
     static navigationOptions = {
         title: 'Welcome',
       };
+
+
+
+      _onPressButton() {
+        this.props.navigation.navigate("LisContacts")
+    }
     render() {
         return (
                 <View style={styles.container}>
-                <Text style={styles.label}> {this.props.navigation.state.params.fullname}</Text>
-
+                <View style={styles.row }></View>
+                    <View style={styles.row}>
+                        <View style={styles.colum}></View>
+                            <View style={styles.colum}>
+                            <Image resizeMode="contain" style={styles.logo} source={require('./images/Logo.png')} />
+                            </View>
+                        <View style={styles.colum}></View>
+                    </View>
                     <View style={styles.row}></View>
+                    <View style={styles.row}>
+                        <Text style={styles.label}> {'WELCOME'}</Text>
+                        <Text style={styles.label}> {this.props.navigation.state.params.fullname}</Text>
+                    </View>
+
+
                     <View style={styles.row}></View>
                     <View style={styles.row}>
                         <View style={styles.colum}>
-                            <Text  style={styles.label} onPress={this.props.navigation.navigate("LisContacts")
-             } > Contacts</Text>
+                            <TouchableOpacity style={styles.buttonContainer}
+                            onPress={this._onPressButton.bind(this)}>
+                            <Text  style={styles.label}>Contacts</Text>
+                            </TouchableOpacity> 
                         </View>
                         <View style={styles.colum}>
                             <Text style={styles.label}> Send SMS</Text>
@@ -50,6 +70,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         //backgroundColor: '#2c3e50',
+    },
+    logo: {
+        position: 'absolute',
+        width: 200,
+        height: 100
     },
     row:{
         flex: 1,

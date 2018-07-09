@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import{View,StyleSheet,TextInput,ListView,Text,ActivityIndicator,Alert,Button} from "react-native"
+import{View,StyleSheet,TextInput,ListView,Text,ActivityIndicator,Alert,Button,Icon} from "react-native"
 import { StackNavigator } from 'react-navigation'; // Version can be specified in package.json
 
 
@@ -42,8 +42,8 @@ export default class LisContacts extends React.Component {
         }
         componentDidMount() {
  
-            //return fetch('http://192.168.0.106:3000/users')
-            return fetch('https://reactnativecode.000webhostapp.com/FruitsList.php')
+            return fetch('http://localhost:3000/users')
+            //return fetch('https://reactnativecode.000webhostapp.com/FruitsList.php')
               
             .then((response) => response.json())
               .then((responseJson) => {
@@ -75,7 +75,9 @@ export default class LisContacts extends React.Component {
           return (
             <View style={list.header}>
             {/* <Text style={list.Appname}>Contacts</Text> */}
+            {/* <Icon name="ios-search" size={20} color="#000"/> */}
               <TextInput style={list.search}
+                Icon="ios-search"
                 placeholder="Search"
                 underlineColorAndroid='transparent'
                 onChangeText={(search) => this.SearchFilterFunction(search)}
@@ -86,11 +88,14 @@ export default class LisContacts extends React.Component {
         <ListView TouchableHighlight
           dataSource={this.state.dataSource}
           renderSeparator= {this.ListViewItemSeparator}
-          renderRow={(rowData) => <Text style={styles.rowViewContainer} 
+          renderRow={(rowData) =>  <Text style={styles.rowViewContainer} 
           onPress={
-             this.GetListViewItem.bind(this, rowData.name,rowData.email)} >{rowData.name}</Text>}
+             this.GetListViewItem.bind(this, rowData.name,rowData.email)} >{rowData.department+rowData.name}</Text>
+            }
+            
           enableEmptySections={true}
           style={{marginTop: 10}}
+          
         />
           </View>
               </View>

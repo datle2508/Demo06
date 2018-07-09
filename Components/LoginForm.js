@@ -76,8 +76,8 @@ componentDidMount() {
   }).done();
 }
 saveData(value) {
-  AsyncStorage.setItem("Username", Username);
-  this.setState({"Username": Username});
+  AsyncStorage.setItem("value", value);
+  this.setState({"Username": value});
 }
 
 render() {
@@ -124,10 +124,6 @@ render() {
       </View>
                </View>
             </KeyboardAvoidingView>
-
-
-      
-
   );
 }
 }
@@ -198,18 +194,17 @@ const RootStack =  createStackNavigator(
     Home: {
       screen: Home,
       navigationOptions: () => ({
-        title: 'Home',
-        headerBackTitle: 'Home'
+        header:null
       }),
     },
 
-    // LisContacts: {
-    //   screen: LisContacts,
-    //   navigationOptions: () => ({
-    //     title: 'LisContacts',
-    //     headerBackTitle: 'LisContacts'
-    //   }),
-    // },
+    LisContacts: {
+      screen: LisContacts,
+      navigationOptions: () => ({
+        title: 'LisContacts',
+        headerBackTitle: 'LisContacts'
+      }),
+    },
 
     ContactDetail: {
       screen: ContactDetail,

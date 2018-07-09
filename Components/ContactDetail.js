@@ -9,7 +9,7 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View,Alert
+  View,Alert,ScrollView,Row
 } from 'react-native';
 
 const instructions = Platform.select({
@@ -26,35 +26,74 @@ export default class ContactDetail extends Component {
         }
         //Alert.alert(name);
     
-  render() {
+  render(){
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-        Name: {this.props.navigation.state.params.name}
-        </Text>
-        <Text style={styles.instructions}>
-        Email: {this.props.navigation.state.params.email}
-        </Text>
-      </View>
+      <ScrollView
+      contentContainerStyle={{
+        flexGrow: 1,
+        justifyContent: 'space-between'
+    }}>
+       <Row />
+       <Row />
+       <Row />
+       <Row />
+       <Row />
+    </ScrollView>
     );
-  }
+}
+
+// {
+//     return (
+//       <View style={styles.container}>
+//         <Text style={styles.welcome}>
+//         Name: {this.props.navigation.state.params.name}
+//         </Text>
+//         <Text style={styles.instructions}>
+//         Email: {this.props.navigation.state.params.email}
+//         </Text>
+//       </View>
+//     );
+//   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    flex: 1
+      //backgroundColor: '#2c3e50',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  logo: {
+      position: 'absolute',
+      width: 200,
+      height: 100
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  row:{
+      flex: 1,
+      //backgroundColor : 'green',
+      borderBottomColor : 'grey',
+      borderBottomWidth : 0.1,
+      height: 20,
+      flexDirection:'row'
+      //backgroundColor: 'green',
+      //boderBottomColor: 'black',
+      //boderbottomWidth:1
+      
   },
-});
+  colum: {
+      flex: 1,
+      //backgroundColor : 'red',
+      borderWidth:0.5,
+      borderColor:'grey',
+      justifyContent:'center',
+      alignItems:'center'
+      //borderleftColor : 'grey'
+      //borderleftColor : 'grey',
+      //borderleftWidth : 1
+  },
+  icon:{
+
+  },
+  label:{
+      fontSize:15
+  }
+
+})
