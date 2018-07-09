@@ -21,11 +21,11 @@ export default class LisContacts extends React.Component {
               />
             );
           }
-          GetListViewItem (name,email) {
+          GetListViewItem (department,name,phonenumber,email) {
             //Alert.alert('name:'+name+' email:'+email);
             //this.props.navigation.setParams({ name: 'Lucy' })
              this.props.navigation.navigate("ContactDetail",
-             { name: name,email:email });
+             { department:department,name: name,email:email,phonenumber:phonenumber });
            
            }
            SearchFilterFunction(text){
@@ -90,7 +90,7 @@ export default class LisContacts extends React.Component {
           renderSeparator= {this.ListViewItemSeparator}
           renderRow={(rowData) =>  <Text style={styles.rowViewContainer} 
           onPress={
-             this.GetListViewItem.bind(this, rowData.name,rowData.email)} >{rowData.department+rowData.name}</Text>
+             this.GetListViewItem.bind(this,rowData.department,rowData.name,rowData.phonenumber , rowData.email)} >{rowData.department+rowData.name}</Text>
             }
             
           enableEmptySections={true}

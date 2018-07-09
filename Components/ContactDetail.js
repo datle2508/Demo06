@@ -9,7 +9,7 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View,Alert,ScrollView,Row
+  View,Alert,ScrollView
 } from 'react-native';
 
 const instructions = Platform.select({
@@ -28,17 +28,35 @@ export default class ContactDetail extends Component {
     
   render(){
     return (
-      <ScrollView
-      contentContainerStyle={{
-        flexGrow: 1,
-        justifyContent: 'space-between'
-    }}>
-       <Row />
-       <Row />
-       <Row />
-       <Row />
-       <Row />
-    </ScrollView>
+      <View style={styles.container}>
+      <View style={{flex: 1/2}}>
+      
+      <Text style={styles.appname}>
+      {this.props.navigation.state.params.name}
+      </Text>
+      
+      </View>
+      
+      <ScrollView style={{flex: 3}} >
+      <Text style={styles.appname}>
+      Email
+      </Text>
+      <Text style={styles.detail}>
+      {this.props.navigation.state.params.email}
+      </Text>
+
+            <Text style={styles.appname}>
+      phone
+      </Text>
+      <Text style={styles.detail}>
+      {this.props.navigation.state.params.phonenumber}
+      </Text>
+
+              {/* <Text style={styles}> {this.props.navigation.state.params.fullname}</Text> */}
+              </ScrollView>
+      
+      
+      </View>
     );
 }
 
@@ -67,11 +85,11 @@ const styles = StyleSheet.create({
       height: 100
   },
   row:{
-      flex: 1,
+      //flex: 1,
       //backgroundColor : 'green',
       borderBottomColor : 'grey',
       borderBottomWidth : 0.1,
-      height: 20,
+      height: 300,
       flexDirection:'row'
       //backgroundColor: 'green',
       //boderBottomColor: 'black',
@@ -92,6 +110,23 @@ const styles = StyleSheet.create({
   icon:{
 
   },
+  appname: {
+    fontSize: 20,
+    paddingBottom: 10,
+    paddingLeft: 10,
+    justifyContent: 'center',
+    alignItems:'center',
+    color:'black'
+   },
+   detail: {
+    fontSize: 15,
+    color:'blue',
+    paddingBottom: 10,
+    paddingLeft: 10,
+    justifyContent: 'center',
+    alignItems:'center',
+    color:'black'
+   },
   label:{
       fontSize:15
   }

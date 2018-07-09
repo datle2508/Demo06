@@ -97844,10 +97844,12 @@ __d(function (global, _$$_REQUIRE, module, exports, _dependencyMap) {
 
     _createClass(LisContacts, [{
       key: "GetListViewItem",
-      value: function GetListViewItem(name, email) {
+      value: function GetListViewItem(department, name, phonenumber, email) {
         this.props.navigation.navigate("ContactDetail", {
+          department: department,
           name: name,
-          email: email
+          email: email,
+          phonenumber: phonenumber
         });
       }
     }, {
@@ -97941,7 +97943,7 @@ __d(function (global, _$$_REQUIRE, module, exports, _dependencyMap) {
           renderRow: function renderRow(rowData) {
             return _react.default.createElement(_reactNative.Text, {
               style: styles.rowViewContainer,
-              onPress: _this3.GetListViewItem.bind(_this3, rowData.name, rowData.email),
+              onPress: _this3.GetListViewItem.bind(_this3, rowData.department, rowData.name, rowData.phonenumber, rowData.email),
               __source: {
                 fileName: _jsxFileName,
                 lineNumber: 91
@@ -98104,41 +98106,59 @@ __d(function (global, _$$_REQUIRE, module, exports, _dependencyMap) {
     _createClass(ContactDetail, [{
       key: "render",
       value: function render() {
-        return _react.default.createElement(_reactNative.ScrollView, {
-          contentContainerStyle: {
-            flexGrow: 1,
-            justifyContent: 'space-between'
-          },
+        return _react.default.createElement(_reactNative.View, {
+          style: styles.container,
           __source: {
             fileName: _jsxFileName,
             lineNumber: 31
           }
-        }, _react.default.createElement(_reactNative.Row, {
+        }, _react.default.createElement(_reactNative.View, {
+          style: {
+            flex: 1 / 2
+          },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 36
+            lineNumber: 32
           }
-        }), _react.default.createElement(_reactNative.Row, {
+        }, _react.default.createElement(_reactNative.Text, {
+          style: styles.appname,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 37
+            lineNumber: 34
           }
-        }), _react.default.createElement(_reactNative.Row, {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 38
-          }
-        }), _react.default.createElement(_reactNative.Row, {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 39
-          }
-        }), _react.default.createElement(_reactNative.Row, {
+        }, this.props.navigation.state.params.name)), _react.default.createElement(_reactNative.ScrollView, {
+          style: {
+            flex: 3
+          },
           __source: {
             fileName: _jsxFileName,
             lineNumber: 40
           }
-        }));
+        }, _react.default.createElement(_reactNative.Text, {
+          style: styles.appname,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 41
+          }
+        }, "Email"), _react.default.createElement(_reactNative.Text, {
+          style: styles.detail,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 44
+          }
+        }, this.props.navigation.state.params.email), _react.default.createElement(_reactNative.Text, {
+          style: styles.appname,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 48
+          }
+        }, "phone"), _react.default.createElement(_reactNative.Text, {
+          style: styles.detail,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 51
+          }
+        }, this.props.navigation.state.params.phonenumber)));
       }
     }]);
 
@@ -98160,10 +98180,9 @@ __d(function (global, _$$_REQUIRE, module, exports, _dependencyMap) {
       height: 100
     },
     row: {
-      flex: 1,
       borderBottomColor: 'grey',
       borderBottomWidth: 0.1,
-      height: 20,
+      height: 300,
       flexDirection: 'row'
     },
     colum: {
@@ -98174,6 +98193,23 @@ __d(function (global, _$$_REQUIRE, module, exports, _dependencyMap) {
       alignItems: 'center'
     },
     icon: {},
+    appname: {
+      fontSize: 20,
+      paddingBottom: 10,
+      paddingLeft: 10,
+      justifyContent: 'center',
+      alignItems: 'center',
+      color: 'black'
+    },
+    detail: {
+      fontSize: 15,
+      color: 'blue',
+      paddingBottom: 10,
+      paddingLeft: 10,
+      justifyContent: 'center',
+      alignItems: 'center',
+      color: 'black'
+    },
     label: {
       fontSize: 15
     }
