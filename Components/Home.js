@@ -9,7 +9,7 @@ export default class Home extends Component {
 
 
       _onPressButton() {
-        this.props.navigation.navigate("LisContacts")
+        this.props.navigation.navigate("ListContacts")
     }
     render() {
         return (

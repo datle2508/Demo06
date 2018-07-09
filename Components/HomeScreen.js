@@ -3,7 +3,7 @@ import { Button, View, Text,
   StyleSheet,ListView,SectionList,StatusBar,TouchableOpacity,
   TextInput,Alert } from 'react-native';
 import { createStackNavigator } from 'react-navigation'; // Version can be specified in package.json
-import LisContacts from "./LisContacts";
+import ListContacts from "./ListContacts";
 import ContactDetail from "./ContactDetail";
 import Home from "./Home";
 import { YellowBox } from 'react-native'

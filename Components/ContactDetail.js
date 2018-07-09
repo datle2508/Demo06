@@ -9,8 +9,10 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View,Alert,ScrollView
+  View,Alert,ScrollView,TouchableOpacity
 } from 'react-native';
+import { Avatar } from 'react-native-elements';
+import Communications from 'react-native-communications';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -29,28 +31,63 @@ export default class ContactDetail extends Component {
   render(){
     return (
       <View style={styles.container}>
-      <View style={{flex: 1/2}}>
-      
+      <View style={{flex: 1/3,justifyContent: 'center',backgroundColor: 'rgba(225,225,225,1)',
+        alignItems: 'center'}}>
+      <Avatar
+        size="10000"
+        rounded
+        title="CR"
+        onPress={() => console.log("Works!")}
+        activeOpacity={0.7}
+        // containerStyle={{flex: 2, marginLeft: 20, marginTop: 115}}
+      />
+
       <Text style={styles.appname}>
       {this.props.navigation.state.params.name}
+      </Text>
+      <Text style={{color:'grey'}}>
+      {this.props.navigation.state.params.department}
+      </Text>
+      <Text style={{color:'grey'}}>
+      Ngân hàng bưu điện Liên Việt
       </Text>
       
       </View>
       
-      <ScrollView style={{flex: 3}} >
-      <Text style={styles.appname}>
-      Email
-      </Text>
-      <Text style={styles.detail}>
-      {this.props.navigation.state.params.email}
-      </Text>
+      <ScrollView style={{flex: 3,backgroundColor: 'rgba(225,225,225,0.2)',backgroundColor: '#F5FCFF',
+          borderWidth:1,borderRadius: 10,
+          paddingTop: 2,
+          paddingBottom: 2,
+          paddingRight:10,
+          paddingLeft: 10,
+          
+          }} >
 
-            <Text style={styles.appname}>
+
+      <Text style={styles.appname}>
       phone
       </Text>
+      <TouchableOpacity onPress={() => Communications.phonecall(this.props.navigation.state.params.phonenumber, true)}>
       <Text style={styles.detail}>
       {this.props.navigation.state.params.phonenumber}
       </Text>
+      </TouchableOpacity>
+      <Text style={styles.appname}>
+      work phone
+      </Text>
+      <TouchableOpacity onPress={() => Communications.phonecall(this.props.navigation.state.params.phonenumber, true)}>
+      <Text style={styles.detail}>
+      {this.props.navigation.state.params.phonenumber}
+      </Text>
+      </TouchableOpacity>
+      <Text style={styles.appname}>
+      email
+      </Text>
+      <TouchableOpacity onPress={() => Communications.email(this.props.navigation.state.params.phonenumber, null,null,null,null)}>
+      <Text style={styles.detail}>
+      {this.props.navigation.state.params.email}
+      </Text>
+      </TouchableOpacity>
 
               {/* <Text style={styles}> {this.props.navigation.state.params.fullname}</Text> */}
               </ScrollView>
@@ -103,9 +140,6 @@ const styles = StyleSheet.create({
       borderColor:'grey',
       justifyContent:'center',
       alignItems:'center'
-      //borderleftColor : 'grey'
-      //borderleftColor : 'grey',
-      //borderleftWidth : 1
   },
   icon:{
 
@@ -120,12 +154,13 @@ const styles = StyleSheet.create({
    },
    detail: {
     fontSize: 15,
-    color:'blue',
+    color:'steelblue',
     paddingBottom: 10,
     paddingLeft: 10,
     justifyContent: 'center',
     alignItems:'center',
-    color:'black'
+    borderBottomColor : 'black',
+    borderBottomWidth : 1,
    },
   label:{
       fontSize:15

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import{View,StyleSheet,TextInput,ListView,Text,ActivityIndicator,Alert,Button,Icon} from "react-native"
+import{View,StyleSheet,TextInput,ListView,Text,ActivityIndicator,Alert,Button,TouchableOpacity} from "react-native"
 import { StackNavigator } from 'react-navigation'; // Version can be specified in package.json
-
-
-export default class LisContacts extends React.Component {
+import { SearchBar } from 'react-native-elements'
+import { Icon } from 'react-native-elements'
+export default class ListContacts extends React.Component {
 
         constructor(props){
           super(props);
@@ -76,6 +76,11 @@ export default class LisContacts extends React.Component {
             <View style={list.header}>
             {/* <Text style={list.Appname}>Contacts</Text> */}
             {/* <Icon name="ios-search" size={20} color="#000"/> */}
+
+                        {/* <SearchBar style={list.search}
+              onChangeText={(search) => this.SearchFilterFunction(search)}
+              placeholder='Type Here...' /> */}
+
               <TextInput style={list.search}
                 Icon="ios-search"
                 placeholder="Search"
@@ -88,11 +93,30 @@ export default class LisContacts extends React.Component {
         <ListView TouchableHighlight
           dataSource={this.state.dataSource}
           renderSeparator= {this.ListViewItemSeparator}
-          renderRow={(rowData) =>  <Text style={styles.rowViewContainer} 
-          onPress={
-             this.GetListViewItem.bind(this,rowData.department,rowData.name,rowData.phonenumber , rowData.email)} >{rowData.department+rowData.name}</Text>
-            }
+          // renderRow={(rowData,i) =>  <Text style={styles.rowViewContainer} 
+          // onPress={
+          //    this.GetListViewItem.bind(this,rowData.department,rowData.name,rowData.phonenumber , rowData.email)} >{rowData.department+rowData.name}</Text>
+          //   }
             
+          renderRow={(rowData) =>
+ 
+            <View style={{flex:1, flexDirection: 'column'}} >
+      
+              <TouchableOpacity onPress={this.GetListViewItem.bind(this,rowData.department,rowData.name,rowData.phonenumber , rowData.email)} >
+            
+              <Text style={styles.rowViewContainer} >{rowData.name}</Text>
+      
+              <Text style={styles.textViewContainer} >{rowData.phonenumber}</Text>
+      
+              <Text style={styles.textViewContainer} >{rowData.email}</Text>
+      
+              <Text style={styles.textViewContainer} >{ rowData.department}</Text>
+      
+              </TouchableOpacity>
+      
+            </View>
+      
+             }
           enableEmptySections={true}
           style={{marginTop: 10}}
           
@@ -113,9 +137,15 @@ export default class LisContacts extends React.Component {
          },
         
         rowViewContainer: {
-          padding: 10,
+          padding: 5,
           fontSize: 18,
-          height: 44,
+          height: 30,
+         },
+         textViewContainer: {
+          padding: 2,
+          fontSize: 14,
+          paddingLeft: 10,
+          color:'grey'
          },
         
          TextInputStyleClass:{
