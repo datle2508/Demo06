@@ -102,7 +102,7 @@ render() {
                       //keyboardType='email-address' 
                       returnKeyType="next" 
                       placeholder='Username' 
-                      onChangeText={(Username)=>this.saveData({Username})}
+                      onChangeText={(Username)=>this.setState({Username})}
                       value={this.state.Username}
                       placeholderTextColor='rgba(62,62,62,0.7)'/>
 
@@ -146,7 +146,6 @@ const styles = StyleSheet.create({
       borderColor:'black',
       marginBottom: 10,
       padding: 10,
-
       color: 'black'
   },
   buttonContainer:{

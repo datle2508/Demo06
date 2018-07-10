@@ -195,6 +195,7 @@ export default class ListContacts extends React.Component {
           paddingRight:10,
           paddingLeft: 10,
           borderColor:'black',
+          height: 40,
           fontSize:15,
           backgroundColor: 'rgba(247,247,247,1.0)',
          },
