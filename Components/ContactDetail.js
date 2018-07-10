@@ -24,24 +24,26 @@ const instructions = Platform.select({
 export default class ContactDetail extends Component {
     constructor(props){
         super(props);
-            
+            var ava = this.props.navigation.state.params.avatar
         }
         //Alert.alert(name);
     
   render(){
     return (
       <View style={styles.container}>
+      
       <View style={{flex: 1/3,justifyContent: 'center',backgroundColor: 'rgba(225,225,225,1)',
         alignItems: 'center'}}>
+      
       <Avatar
-        size="10000"
+        large
         rounded
-        title="CR"
+        title= {this.props.navigation.state.params.avatar}
         onPress={() => console.log("Works!")}
         activeOpacity={0.7}
+        //containerStyle={{flex: 1}}
         // containerStyle={{flex: 2, marginLeft: 20, marginTop: 115}}
       />
-
       <Text style={styles.appname}>
       {this.props.navigation.state.params.name}
       </Text>
@@ -75,9 +77,9 @@ export default class ContactDetail extends Component {
       <Text style={styles.appname}>
       work phone
       </Text>
-      <TouchableOpacity onPress={() => Communications.phonecall(this.props.navigation.state.params.phonenumber, true)}>
+      <TouchableOpacity onPress={() => Communications.phonecall(this.props.navigation.state.params.workphone, true)}>
       <Text style={styles.detail}>
-      {this.props.navigation.state.params.phonenumber}
+      {this.props.navigation.state.params.workphone}
       </Text>
       </TouchableOpacity>
       <Text style={styles.appname}>

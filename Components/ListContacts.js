@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import{View,StyleSheet,TextInput,ListView,Text,ActivityIndicator,Alert,Button,TouchableOpacity} from "react-native"
+import{View,StyleSheet,TextInput,ListView,Text,ActivityIndicator,Alert,Button,TouchableOpacity,reject} from "react-native"
 import { StackNavigator } from 'react-navigation'; // Version can be specified in package.json
 import { SearchBar } from 'react-native-elements'
 import { Icon } from 'react-native-elements'
@@ -21,20 +21,24 @@ export default class ListContacts extends React.Component {
               />
             );
           }
-          GetListViewItem (department,name,phonenumber,email) {
+          GetListViewItem (department,name,avatar,workphone,phonenumber,email) {
             //Alert.alert('name:'+name+' email:'+email);
             //this.props.navigation.setParams({ name: 'Lucy' })
              this.props.navigation.navigate("ContactDetail",
-             { department:department,name: name,email:email,phonenumber:phonenumber });
+             { department:department,name: name,avatar:avatar,email:email,workphone:workphone,phonenumber:phonenumber });
            
            }
            SearchFilterFunction(text){
      
             const newData = this.arrayholder.filter(function(item){
                 const itemData = item.name.toUpperCase()
-                const itemData = item.phonenumber.toUpperCase()
+                const itemEmail = item.email.toUpperCase()
+                const itemDepart = item.department.toUpperCase()
+                const itemPhone = item.phonenumber.toUpperCase()
+                const itemWorkPhone = item.workphone.toUpperCase()
                 const textData = text.toUpperCase()
-                return itemData.indexOf(textData) > -1
+                return itemData.indexOf(textData) > -1||itemEmail.indexOf(textData)>-1
+                ||itemDepart.indexOf(textData)>-1||itemPhone.indexOf(textData)>-1||itemWorkPhone.indexOf(textData)>-1
             })
             this.setState({
                 dataSource: this.state.dataSource.cloneWithRows(newData),
@@ -42,11 +46,12 @@ export default class ListContacts extends React.Component {
             })
         }
         componentDidMount() {
- 
             return fetch('http://192.168.0.108:3000/users')
             //return fetch('https://reactnativecode.000webhostapp.com/FruitsList.php')
               
-            .then((response) => response.json())
+            .then(
+              
+              (response) => response.json())
               .then((responseJson) => {
                 //Alert.alert(JSON.stringify(responseJson))
                 let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -61,10 +66,14 @@ export default class ListContacts extends React.Component {
                 });
               })
               .catch((error) => {
+                
+                Alert.alert(error.message);
+                reject(new Error(`Unable to retrieve events.\n${error.message}`));
                 console.error(error);
               });
-              
-          }
+            }
+
+                
         render() {
             if (this.state.isLoading) {
                 return (
@@ -103,7 +112,7 @@ export default class ListContacts extends React.Component {
  
             <View style={{flex:1, flexDirection: 'column'}} >
       
-              <TouchableOpacity onPress={this.GetListViewItem.bind(this,rowData.department,rowData.name,rowData.phonenumber , rowData.email)} >
+              <TouchableOpacity onPress={this.GetListViewItem.bind(this,rowData.department,rowData.name,rowData.avatar,rowData.workphone,rowData.phonenumber,rowData.email)} >
             
               <Text style={styles.rowViewContainer} >{rowData.name}</Text>
       

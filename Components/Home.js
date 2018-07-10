@@ -14,13 +14,6 @@ export default class Home extends Component {
         return (
                 <View style={styles.container}>
                 <View style={styles.row }></View>
-                    <View style={styles.row}>
-                        <View style={styles.colum}></View>
-                            <View style={styles.colum}>
-                            <Image resizeMode="contain" style={styles.logo} source={require('./images/Logo.png')} />
-                            </View>
-                        <View style={styles.colum}></View>
-                    </View>
                     <View style={styles.row}></View>
                     <View style={styles.row}>
                         <Text style={styles.label}> {'WELCOME'}</Text>
