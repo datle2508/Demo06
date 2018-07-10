@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet,KeyboardAvoidingView,TouchableOpacity } from 'react-native';
-
 export default class Home extends Component {
     static navigationOptions = {
         title: 'Welcome',
@@ -79,8 +78,8 @@ const styles = StyleSheet.create({
     row:{
         flex: 1,
         //backgroundColor : 'green',
-        borderBottomColor : 'grey',
-        borderBottomWidth : 0.1,
+        //borderBottomColor : 'grey',
+        //borderBottomWidth : 0.1,
         flexDirection:'row'
         //backgroundColor: 'green',
         //boderBottomColor: 'black',
@@ -90,8 +89,8 @@ const styles = StyleSheet.create({
     colum: {
         flex: 1,
         //backgroundColor : 'red',
-        borderWidth:0.5,
-        borderColor:'grey',
+        //borderWidth:0.5,
+        //borderColor:'grey',
         justifyContent:'center',
         alignItems:'center'
         //borderleftColor : 'grey'
@@ -99,6 +98,10 @@ const styles = StyleSheet.create({
         //borderleftWidth : 1
     },
     icon:{
+
+    },
+    buttonContainer:{
+        backgroundColor: '#2c3e50',
 
     },
     label:{

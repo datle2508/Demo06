@@ -32,6 +32,7 @@ export default class ListContacts extends React.Component {
      
             const newData = this.arrayholder.filter(function(item){
                 const itemData = item.name.toUpperCase()
+                const itemData = item.phonenumber.toUpperCase()
                 const textData = text.toUpperCase()
                 return itemData.indexOf(textData) > -1
             })
@@ -42,7 +43,7 @@ export default class ListContacts extends React.Component {
         }
         componentDidMount() {
  
-            return fetch('http://localhost:3000/users')
+            return fetch('http://192.168.0.108:3000/users')
             //return fetch('https://reactnativecode.000webhostapp.com/FruitsList.php')
               
             .then((response) => response.json())
